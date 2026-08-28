@@ -3,7 +3,14 @@ import './style.css'
 
 const supabase = createClient(
   'https://fgomaujsdblpzxhnnqrg.supabase.co',
-  'sb_publishable_JOUqLZDnfGu_yCa6k6FVDQ_AYwpr72i'
+  'sb_publishable_JOUqLZDnfGu_yCa6k6FVDQ_AYwpr72i',
+  {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false
+    }
+  }
 )
 
 const form = document.querySelector('#volunteer-form')
@@ -39,9 +46,13 @@ form.addEventListener('submit', async (event) => {
     .insert({ usher_volunteer_name: volunteerName, usher_service_selections: selectedServices })
 
   if (error) {
-    message.textContent = error.code === '23505'
-      ? 'That name has already been submitted. Please use a different name or contact the organizer.'
-      : 'We could not submit the form. Please try again.'
+    if (error.code === '23505') {
+      message.textContent = 'That name has already been submitted. Please use a different name or contact the organizer.'
+    } else if (error.code === '42501') {
+      message.textContent = 'The form could not access the sign-up list. Please refresh the page and try again.'
+    } else {
+      message.textContent = `We could not submit the form (${error.code || 'connection error'}). Please try again.`
+    }
     submitButton.disabled = false
     submitButton.textContent = 'Submit'
     return

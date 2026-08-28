@@ -79,8 +79,11 @@ document.querySelector('#cancel-button').addEventListener('click', () => {
 })
 
 document.querySelector('#close-button').addEventListener('click', () => {
+  form.reset()
+  message.textContent = ''
+  formView.hidden = true
+  thankYouView.hidden = true
+  document.querySelector('.page-shell').hidden = true
+  document.title = 'Form closed'
   window.close()
-  if (!window.closed) {
-    thankYouView.querySelector('p:last-of-type').textContent = 'You may now close this browser tab.'
-  }
 })

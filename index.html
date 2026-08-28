@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="High Holiday usher volunteer sign-up form" />
+    <title>High Holiday Usher Sign-Up</title>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="card" aria-labelledby="page-title">
+        <div id="form-view">
+          <p class="eyebrow">Volunteer sign-up</p>
+          <h1 id="page-title">High Holiday Ushers</h1>
+          <p class="intro">Thank you for considering to usher for this year's High Holidays. Dates and times for High Holiday services are as follows. Please select one or more times.</p>
+
+          <form id="volunteer-form" novalidate>
+            <label class="name-field" for="volunteer-name">
+              <span>Your name</span>
+              <input id="volunteer-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+            </label>
+
+            <fieldset>
+              <legend class="sr-only">Available service times</legend>
+              <label class="service-option"><input type="checkbox" name="services" value="erev_rosh_hashana" /><span><strong>Erev Rosh Hashana</strong><small>Fri., Sep. 11th at 7:30pm.</small></span></label>
+              <label class="service-option"><input type="checkbox" name="services" value="rosh_hashana" /><span><strong>Rosh Hashana</strong><small>Sat., Sep. 12th at 10:00am.</small></span></label>
+              <label class="service-option"><input type="checkbox" name="services" value="kol_nidre" /><span><strong>Kol Nidre</strong><small>Sun., Sep. 20th at 7:30pm.</small></span></label>
+              <label class="service-option"><input type="checkbox" name="services" value="yom_kippur_morning" /><span><strong>Yom Kippur</strong><small>Mon., Sep. 21st at 10:00am.</small></span></label>
+              <label class="service-option"><input type="checkbox" name="services" value="yom_kippur_afternoon_evening" /><span><strong>Yom Kippur Afternoon/Evening</strong><small>Mon., Sep. 21st at 3:30pm.</small></span></label>
+            </fieldset>
+
+            <p id="form-message" class="message" role="alert" aria-live="polite"></p>
+            <div class="actions">
+              <button class="button button-primary" type="submit">Submit</button>
+              <button class="button button-secondary" id="cancel-button" type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="thank-you-view" class="thank-you" hidden>
+          <div class="checkmark" aria-hidden="true">✓</div>
+          <p class="eyebrow">All set</p>
+          <h1>Thank you!</h1>
+          <p>Your ushering availability has been submitted.</p>
+          <button class="button button-primary" id="close-button" type="button">Click here to close</button>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

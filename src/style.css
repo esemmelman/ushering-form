@@ -19,6 +19,7 @@ input[type='checkbox'] { width: 21px; height: 21px; flex: 0 0 auto; accent-color
 .service-option span { display: grid; gap: 3px; }
 .service-option strong { font-size: .98rem; }
 .service-option small { color: #637069; font-size: .88rem; }
+.arrival-note { margin: 20px 0 0; color: #55625c; font-size: .95rem; line-height: 1.55; }
 .message { min-height: 24px; margin: 18px 0 0; color: #a33f36; font-size: .92rem; font-weight: 600; }
 .actions { display: flex; gap: 12px; margin-top: 14px; }
 .button { min-width: 120px; padding: 13px 22px; border: 1px solid transparent; border-radius: 10px; font: inherit; font-weight: 700; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }

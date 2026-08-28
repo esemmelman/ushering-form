@@ -24,7 +24,9 @@ form.addEventListener('submit', async (event) => {
   message.textContent = ''
 
   const volunteerName = form.elements.name.value.trim()
-  const selectedServices = [...form.querySelectorAll('input[name="services"]:checked')].map(input => input.value)
+  const selectedServices = new Set(
+    [...form.querySelectorAll('input[name="services"]:checked')].map(input => input.value)
+  )
 
   if (!volunteerName) {
     message.textContent = 'Please enter your name.'
@@ -32,7 +34,7 @@ form.addEventListener('submit', async (event) => {
     return
   }
 
-  if (selectedServices.length === 0) {
+  if (selectedServices.size === 0) {
     message.textContent = 'Please select at least one service time.'
     form.querySelector('input[name="services"]').focus()
     return
@@ -43,7 +45,14 @@ form.addEventListener('submit', async (event) => {
 
   const { error } = await supabase
     .from('usher_high_holiday_volunteers_2026_v1')
-    .insert({ usher_volunteer_name: volunteerName, usher_service_selections: selectedServices })
+    .insert({
+      usher_volunteer_name: volunteerName,
+      usher_erev_rosh_hashana_selected: selectedServices.has('erev_rosh_hashana'),
+      usher_rosh_hashana_selected: selectedServices.has('rosh_hashana'),
+      usher_kol_nidre_selected: selectedServices.has('kol_nidre'),
+      usher_yom_kippur_morning_selected: selectedServices.has('yom_kippur_morning'),
+      usher_yom_kippur_afternoon_evening_selected: selectedServices.has('yom_kippur_afternoon_evening')
+    })
 
   if (error) {
     if (error.code === '23505') {

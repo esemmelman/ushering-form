@@ -19,4 +19,4 @@ npm run build
 
 The Supabase publishable key in the browser is intentionally public. Database access is limited to anonymous inserts; submissions cannot be read, edited, or deleted through the public client.
 
-Names are unique after trimming spaces and ignoring capitalization.
+Names are unique after trimming spaces and ignoring capitalization. Each service is stored in its own Boolean (`true`/`false`) column.
